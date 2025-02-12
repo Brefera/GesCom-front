@@ -1,56 +1,63 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Pour les icônes
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const HomePage = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      {/* En-tête */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Bonjour, Sara</Text>
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.headerPrefix}>Bonjour, </Text>
+          <Text style={styles.headerName}>Sara</Text>
+        </View>
+        <TouchableOpacity style={styles.notificationButton}>
+          <Ionicons name="notifications-outline" size={24} color="#1A1A1A" />
+        </TouchableOpacity>
       </View>
 
-      {/* Barre de recherche */}
-      <View style={styles.searchBarContainer}>
+      <View style={styles.searchContainer}>
         <TextInput
-          style={styles.searchBar}
-          placeholder="Recherche..."
-          placeholderTextColor="#999"
+          style={styles.searchInput}
+          placeholder="Recherche"
+          placeholderTextColor="#A0A0A0"
         />
+        <TouchableOpacity style={styles.searchIcon}>
+          <Ionicons name="search" size={20} color="#A0A0A0" />
+        </TouchableOpacity>
       </View>
 
-      {/* Section "Mes boutiques" */}
-      <View style={styles.section}>
+      <View style={styles.shopSection}>
         <Text style={styles.sectionTitle}>Mes boutiques</Text>
-        <Text style={styles.sectionContent}>Shopping girl</Text>
+        <View style={styles.shopCard}>
+          <View>
+            <Text style={styles.shopName}>Shopping girl</Text>
+            <Text style={styles.shopDate}>Date de création: 12/10/2024</Text>
+          </View>
+          <TouchableOpacity style={styles.seeMoreButton}>
+            <Text style={styles.seeMore}>Voir +</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
-      {/* Section "Vêtement" */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Vêtement</Text>
-        <Text style={styles.sectionContent}>Date de création : 12/10/2024</Text>
-      </View>
+      <TouchableOpacity 
+        style={styles.addButton}
+        onPress={() => navigation.navigate('AddShopPage')}
+      >
+        <Ionicons name="add" size={30} color="#FFF" />
+      </TouchableOpacity>
 
-      {/* Barre de navigation en bas */}
-      <View style={styles.bottomNavBar}>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home')}>
-          <Ionicons name="home" size={24} color="#007bff" />
-          <Text style={styles.navText}>Accueil</Text>
+      <View style={styles.bottomNav}>
+        <TouchableOpacity style={styles.navItem}>
+          <Ionicons name="home" size={24} color="#FF9500" />
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Search')}>
-          <Ionicons name="search" size={24} color="#666" />
-          <Text style={styles.navText}>Recherche</Text>
+        <TouchableOpacity style={styles.navItem}>
+          <Ionicons name="cube" size={24} color="#A0A0A0" />
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Favorites')}>
-          <Ionicons name="heart" size={24} color="#666" />
-          <Text style={styles.navText}>Favoris</Text>
+        <TouchableOpacity style={styles.navItem}>
+          <Ionicons name="document-text" size={24} color="#A0A0A0" />
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Profile')}>
-          <Ionicons name="person" size={24} color="#666" />
-          <Text style={styles.navText}>Profil</Text>
+        <TouchableOpacity style={styles.navItem}>
+          <Ionicons name="settings" size={24} color="#A0A0A0" />
         </TouchableOpacity>
       </View>
     </View>
@@ -60,63 +67,135 @@ const HomePage = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
-    padding: 20,
+    backgroundColor: '#FFFFFF',
   },
   header: {
-    marginBottom: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingTop: 60,
+    paddingBottom: 24,
   },
-  headerTitle: {
+  headerTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  headerPrefix: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
+    color: '#1A1A1A',
+    fontWeight: '400',
   },
-  searchBarContainer: {
-    marginBottom: 20,
+  headerName: {
+    fontSize: 24,
+    color: '#FF9500',
+    fontWeight: '700',
   },
-  searchBar: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#fff',
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 15,
+  notificationButton: {
+    padding: 8,
+    borderRadius: 12,
+    backgroundColor: '#F8F8F8',
+  },
+  searchContainer: {
+    marginHorizontal: 24,
+    marginBottom: 24,
+    position: 'relative',
+  },
+  searchInput: {
+    backgroundColor: '#F8F8F8',
+    borderRadius: 16,
+    padding: 16,
+    paddingRight: 48,
     fontSize: 16,
+    color: '#1A1A1A',
   },
-  section: {
-    marginBottom: 20,
+  searchIcon: {
+    position: 'absolute',
+    right: 16,
+    top: '50%',
+    transform: [{ translateY: -10 }],
+  },
+  shopSection: {
+    backgroundColor: '#FFF6E9',
+    flex: 1,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    padding: 24,
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
+    fontWeight: '700',
+    marginBottom: 20,
+    color: '#1A1A1A',
   },
-  sectionContent: {
-    fontSize: 16,
-    color: '#666',
+  shopCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 4,
   },
-  bottomNavBar: {
+  shopName: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 8,
+    color: '#1A1A1A',
+  },
+  shopDate: {
+    fontSize: 14,
+    color: '#808080',
+  },
+  seeMoreButton: {
+    backgroundColor: '#F8F8F8',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+  },
+  seeMore: {
+    color: '#FF9500',
+    fontWeight: '600',
+  },
+  addButton: {
+    position: 'absolute',
+    bottom: 90,
+    right: 24,
+    backgroundColor: '#FF9500',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#FF9500',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  bottomNav: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 20,
+    paddingHorizontal: 24,
     borderTopWidth: 1,
-    borderTopColor: '#ccc',
-    paddingVertical: 10,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    borderTopColor: '#F0F0F0',
   },
   navItem: {
     alignItems: 'center',
-  },
-  navText: {
-    fontSize: 12,
-    color: '#666',
-    marginTop: 5,
+    padding: 8,
   },
 });
 

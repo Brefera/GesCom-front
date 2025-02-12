@@ -1,129 +1,247 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Dimensions,
+  KeyboardAvoidingView,
+  Platform,
+  StatusBar,
+  Animated,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+
+const { width } = Dimensions.get('window');
 
 const LoginPage = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [focusedInput, setFocusedInput] = useState(null);
+
+  const handleLogin = async () => {
+    setIsLoading(true);
+    // Implement login logic here
+    setTimeout(() => setIsLoading(false), 2000);
+  };
+
+  const InputContainer = ({ children, isFocused }) => (
+    <Animated.View
+      style={[
+        styles.inputContainer,
+        isFocused && styles.inputContainerFocused,
+      ]}
+    >
+      {children}
+    </Animated.View>
+  );
+
   return (
-    <View style={styles.container}>
-      {/* Titre */}
-      <Text style={styles.title}>Se connecter</Text>
-
-      {/* Sous-titre */}
-      <Text style={styles.subtitle}>Bon retour sur votre application de gestion de facture</Text>
-
-      {/* Champ Email */}
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#999"
-        keyboardType="email-address"
-        autoCapitalize="none"
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
+      <StatusBar barStyle="light-content" />
+      <LinearGradient
+        colors={['#FF6B6B', '#FF8E53']}
+        style={styles.gradientBackground}
       />
-
-      {/* Champ Mot de passe */}
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de passe"
-        placeholderTextColor="#999"
-        secureTextEntry
-      />
-
-      {/* Lien "Mot de passe oublié ?" */}
-      <TouchableOpacity onPress={() => navigation.navigate('forget_page')}>
-        <Text style={styles.forgotPassword}>Mot de passe oublié ?</Text>
-      </TouchableOpacity>
-
-      {/* Bouton "Se connecter" */}
-      <TouchableOpacity style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>Se connecter</Text>
-      </TouchableOpacity>
-
-      {/* Séparateur "ou" */}
-      <View style={styles.separatorContainer}>
-        <View style={styles.separatorLine} />
-        <Text style={styles.separatorText}>ou</Text>
-        <View style={styles.separatorLine} />
+      
+      <View style={styles.header}>
+        <Image
+          source={require('../../assets/logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+        <Text style={styles.welcomeText}>Bienvenue</Text>
+        <Text style={styles.subtitle}>Gérez vos factures en toute simplicité</Text>
       </View>
 
-      {/* Bouton "Gmail" */}
-      <TouchableOpacity style={styles.socialButton}>
-        <Image
-          source={require('../../assets/Google_logo.png')} // Remplace par le chemin de ton icône Gmail
-          style={styles.socialIcon}
-        />
-        <Text style={styles.socialButtonText}>Gmail</Text>
-      </TouchableOpacity>
+      <View style={styles.formContainer}>
+        <InputContainer isFocused={focusedInput === 'email'}>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            placeholderTextColor="#999"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={setEmail}
+            onFocus={() => setFocusedInput('email')}
+            onBlur={() => setFocusedInput(null)}
+          />
+        </InputContainer>
 
-      {/* Lien "Pas encore de compte ? Créez-en un" */}
-      <TouchableOpacity onPress={() => navigation.replace('Register_page1')}>
-        <Text style={styles.registerLink}>Pas encore de compte ? <Text style={styles.registerLinkGreen}>Créez-en un</Text></Text>
-      </TouchableOpacity>
-    </View>
+        <InputContainer isFocused={focusedInput === 'password'}>
+          <TextInput
+            style={styles.input}
+            placeholder="Mot de passe"
+            placeholderTextColor="#999"
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+            onFocus={() => setFocusedInput('password')}
+            onBlur={() => setFocusedInput(null)}
+          />
+        </InputContainer>
+
+        <TouchableOpacity 
+          onPress={() => navigation.navigate('forget_page')}
+          style={styles.forgotPasswordContainer}
+        >
+          <Text style={styles.forgotPassword}>Mot de passe oublié ?</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={handleLogin}
+          disabled={isLoading}
+        >
+          <LinearGradient
+            colors={['#FF6B6B', '#FF8E53']}
+            style={styles.gradientButton}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+          >
+            <Text style={styles.loginButtonText}>
+              {isLoading ? 'Chargement...' : 'Se connecter'}
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
+
+        <View style={styles.divider}>
+          <View style={styles.dividerLine} />
+          <Text style={styles.dividerText}>ou</Text>
+          <View style={styles.dividerLine} />
+        </View>
+
+        <TouchableOpacity style={styles.socialButton}>
+          <Image
+            source={require('../../assets/Google_logo.png')}
+            style={styles.socialIcon}
+          />
+          <Text style={styles.socialButtonText}>Continuer avec Google</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.footer}>
+        <TouchableOpacity 
+          onPress={() => navigation.replace('Register_page1')}
+          style={styles.registerContainer}
+        >
+          <Text style={styles.registerText}>
+            Pas encore de compte ? <Text style={styles.registerLink}>Créez-en un</Text>
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
     backgroundColor: '#fff',
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#FF4500', // Orange foncé
+  gradientBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '40%',
+  },
+  header: {
+    paddingTop: Platform.OS === 'ios' ? 60 : 40,
+    paddingHorizontal: 24,
+    alignItems: 'center',
+  },
+  logo: {
+    width: 80,
+    height: 80,
+    marginBottom: 20,
+  },
+  welcomeText: {
+    fontSize: 32,
+    fontWeight: '700',
+    color: '#fff',
+    marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
-    marginBottom: 30,
+    color: 'rgba(255, 255, 255, 0.8)',
     textAlign: 'center',
   },
-  input: {
-    width: '100%',
-    height: 50,
-    borderColor: '#ccc',
+  formContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    marginTop: 40,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 24,
+    paddingTop: 30,
+  },
+  inputContainer: {
+    backgroundColor: '#f8f8f8',
+    borderRadius: 12,
+    marginBottom: 16,
     borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 15,
-    marginBottom: 15,
+    borderColor: 'transparent',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 3.84,
+    elevation: 2,
+  },
+  inputContainerFocused: {
+    borderColor: '#FF6B6B',
+    backgroundColor: '#fff',
+  },
+  input: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
     fontSize: 16,
+    color: '#333',
+  },
+  forgotPasswordContainer: {
+    alignSelf: 'flex-end',
+    marginBottom: 24,
   },
   forgotPassword: {
-    color: '#FF4500', // Orange foncé
+    color: '#666',
     fontSize: 14,
-    alignSelf: 'flex-end',
-    marginBottom: 20,
   },
   loginButton: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#FF4500', // Orange foncé
-    justifyContent: 'center',
+    marginBottom: 24,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  gradientButton: {
+    paddingVertical: 16,
     alignItems: 'center',
-    borderRadius: 5,
-    marginBottom: 20,
   },
   loginButtonText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
-  separatorContainer: {
+  divider: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
-    marginBottom: 20,
+    marginBottom: 24,
   },
-  separatorLine: {
+  dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#ccc',
+    backgroundColor: '#E5E5E5',
   },
-  separatorText: {
-    marginHorizontal: 10,
+  dividerText: {
+    marginHorizontal: 12,
     color: '#666',
     fontSize: 14,
   },
@@ -131,25 +249,35 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%',
-    height: 50,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 20,
+    backgroundColor: '#f8f8f8',
+    borderRadius: 12,
+    paddingVertical: 16,
+    marginBottom: 24,
   },
   socialIcon: {
     width: 24,
     height: 24,
-    marginRight: 10,
+    marginRight: 12,
   },
   socialButtonText: {
     fontSize: 16,
     color: '#333',
+    fontWeight: '500',
+  },
+  footer: {
+    paddingBottom: Platform.OS === 'ios' ? 40 : 24,
+    paddingHorizontal: 24,
+  },
+  registerContainer: {
+    alignItems: 'center',
+  },
+  registerText: {
+    fontSize: 14,
+    color: '#666',
   },
   registerLink: {
-    color: '#FF4500', // Orange foncé
-    fontSize: 14,
+    color: '#FF6B6B',
+    fontWeight: '600',
   },
 });
 
