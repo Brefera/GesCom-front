@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const AddShopPage = ({ navigation }) => {
+const AddshopPage = ({ navigation }) => {
   const [shopName, setShopName] = useState('');
   const [type, setType] = useState('');
   const [address, setAddress] = useState('');
@@ -24,7 +24,7 @@ const AddShopPage = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home_page')}>
         <Ionicons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
       
@@ -74,7 +74,7 @@ const AddShopPage = ({ navigation }) => {
           onChangeText={setDescription}
         />
 
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+        <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('Home_page')}>
           <Text style={styles.submitButtonText}>Valider</Text>
         </TouchableOpacity>
       </View>
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: '#FFF',
     padding: 20,
+    paddingTop: 40, // Ajout de l'espace en haut
   },
   backButton: {
     marginBottom: 20,
@@ -131,4 +132,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddShopPage;
+
+export default AddshopPage;

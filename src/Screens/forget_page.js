@@ -20,7 +20,7 @@ const ForgotPassword = ({ navigation }) => {
       />
 
       {/* Bouton "Envoyer" */}
-      <TouchableOpacity style={styles.sendButton}onPress={() => navigation.navigate('ResetPassword')}>
+      <TouchableOpacity style={styles.sendButton}onPress={() => navigation.navigate('')}>
         <Text style={styles.sendButtonText}>Envoyer</Text>
       </TouchableOpacity>
 

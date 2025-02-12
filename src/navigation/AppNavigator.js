@@ -8,7 +8,7 @@ import LoadingScreen2 from '../Screens/LoadingScreen2';
 import HomePage from '../Screens/Home_page';
 import ForgotPassword from '../Screens/forget_page';
 import ResetPassword from '../Screens/ResetPassword';
-import AddShopPage from '../Screens/AddShopPage';
+import AddshopPage from '../Screens/AddShopPage';
 
 const Stack = createStackNavigator();
 
@@ -20,10 +20,10 @@ const AppNavigator = () => {
       <Stack.Screen name="Login" component={Loginpage} />
       <Stack.Screen name="RegisterStep1" component={RegisterStep1} />
       <Stack.Screen name="RegisterStep2" component={RegisterStep2} />
-      <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen name="Home_Page" component={HomePage} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="ResetPassword" component={ResetPassword} />
-      <Stack.Screen name="AddShopPage" component={AddShopPage} />
+      <Stack.Screen name="AddShopPage" component={AddshopPage} />
     </Stack.Navigator>
   );
 };

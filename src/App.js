@@ -9,6 +9,7 @@ import RegisterStep2 from './Screens/Register_page2'; // Étape 2 d'inscription
 import ForgotPassword from './Screens/forget_page'; // Page de mot de passe oublié
 import ResetPassword from './Screens/ResetPassword'; // Page de réinitialisation du mot de passe
 import HomePage from './Screens/Home_page'; // Page d'accueil
+import AddshopPage from './Screens/AddShopPage'; //page d'ajout de boutique
 
 // Crée un navigateur de type Stack
 const Stack = createStackNavigator();
@@ -40,6 +41,9 @@ export default function App() {
 
         {/* Page d'accueil */}
         <Stack.Screen name="Home_page" component={HomePage} />
+
+        {/* Page d'ajout de boutique */}
+        <Stack.Screen name="AddShopPage" component={AddshopPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
