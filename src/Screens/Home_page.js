@@ -10,7 +10,10 @@ const HomePage = ({ navigation }) => {
           <Text style={styles.headerPrefix}>Bonjour, </Text>
           <Text style={styles.headerName}>Sara</Text>
         </View>
-        <TouchableOpacity style={styles.notificationButton}>
+        <TouchableOpacity 
+          style={styles.notificationButton}
+          onPress={() => navigation.navigate('NotificationsPage')}
+        >
           <Ionicons name="notifications-outline" size={24} color="#1A1A1A" />
         </TouchableOpacity>
       </View>
@@ -33,7 +36,7 @@ const HomePage = ({ navigation }) => {
             <Text style={styles.shopName}>Shopping girl</Text>
             <Text style={styles.shopDate}>Date de création: 12/10/2024</Text>
           </View>
-          <TouchableOpacity style={styles.seeMoreButton}>
+          <TouchableOpacity style={styles.seeMoreButton} onPress={() => navigation.navigate('ShopDetailsPage')}>
             <Text style={styles.seeMore}>Voir +</Text>
           </TouchableOpacity>
         </View>
