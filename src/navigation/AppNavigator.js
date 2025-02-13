@@ -14,6 +14,13 @@ import ShopDetailsPage from '../Screens/ShopDetailsPage';
 import Client_Page from '../Screens/ClientsPage';
 import Notification_Page from '../Screens/NotificationsPage';
 import FournisseursPage from '../Screens/FournisseursPage';
+import AddFournisseurPage from '../Screens/AddFournisseurPage';
+import AddClientPage from '../Screens/AddClientPage';
+import AddProductPage from '../Screens/AddProductPage';
+import AddReapproPage from '../Screens/AddReapproPage';
+import FacturesPage from '../Screens/FacturesPage';
+import ReapproPage from '../Screens/ReapproPage';
+import StockPage from '../Screens/StockPage';
 
 
 
@@ -38,6 +45,14 @@ const AppNavigator = () => {
       <Stack.Screen name="ShopDetailsPage" component={ShopDetailsPage} />
       <Stack.Screen name="ClientsPage" component={Client_Page} />
       <Stack.Screen name="FournisseursPage" component={FournisseursPage} />
+      <Stack.Screen name="AddClientPage" component={AddClientPage} />
+      <Stack.Screen name="AddFournisseurPage" component={AddFournisseurPage} />
+      <Stack.Screen name="AddProductPage" component={AddProductPage} />
+      <Stack.Screen name="AddReapproPage" component={AddReapproPage} />
+      <Stack.Screen name="FacturesPage" component={FacturesPage} />
+      <Stack.Screen name="ReapproPage" component={ReapproPage} />
+      <Stack.Screen name="StockPage" component={StockPage} />
+
 
     </Stack.Navigator>
   );

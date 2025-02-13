@@ -46,20 +46,20 @@ const HomePage = ({ navigation }) => {
         <Ionicons name="add" size={30} color="#FFF" />
       </TouchableOpacity>
 
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem}>
-          <Ionicons name="home" size={24} color="#FF9500" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Ionicons name="cube" size={24} color="#A0A0A0" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Ionicons name="document-text" size={24} color="#A0A0A0" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
-          <Ionicons name="settings" size={24} color="#A0A0A0" />
-        </TouchableOpacity>
-      </View>
+       <View style={styles.bottomNav}>
+            <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home_page')}>
+              <Ionicons name="home" size={24} color="#FF9500" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('StockPage')}>
+              <Ionicons name="cube" size={24} color="#A0A0A0" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('FacturesPage')}>
+              <Ionicons name="document-text" size={24} color="#A0A0A0" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Settings')}>
+              <Ionicons name="settings" size={24} color="#A0A0A0" />
+            </TouchableOpacity>
+          </View>
     </View>
   );
 };

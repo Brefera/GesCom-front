@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
 
 const FournisseursPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Bouton Retour */}
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('ShopDetailsPage')}>
         <Ionicons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
 
@@ -19,7 +20,7 @@ const FournisseursPage = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('ClientsPage')}>
           <Text style={styles.inactiveTab}>Clients</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('FournisseursPage')}>
           <Text style={styles.activeTab}>Fournisseurs</Text>
         </TouchableOpacity>
       </View>
@@ -31,9 +32,11 @@ const FournisseursPage = ({ navigation }) => {
       <View style={styles.supplierCard}><Text style={styles.supplierName}>Alicia Bertin</Text></View>
 
       {/* Bouton Ajouter */}
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('AddFournisseurPage')}>
         <Ionicons name="add" size={30} color="#FFF" />
       </TouchableOpacity>
+      {/* Barre de navigation en bas */}
+      <BottomNav navigation={navigation} />
     </View>
   );
 };
@@ -43,6 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
+    paddingTop: 50,
   },
   backButton: {
     marginBottom: 10,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
 
 const notifications = [
   { id: '1', title: 'Stock de skirt presque vide', shop: 'Shopping girl', date: '12/11/2024' },
@@ -33,6 +34,8 @@ const Notification_Page = ({ navigation }) => {
           )}
         />
       </View>
+      {/* Barre de navigation en bas */}
+      <BottomNav navigation={navigation} />
     </View>
   );
 };

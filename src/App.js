@@ -13,6 +13,14 @@ import AddshopPage from './Screens/AddShopPage'; //page d'ajout de boutique
 import ShopDetailPage from './Screens/ShopDetailsPage';
 import Notification_Page from './Screens/NotificationsPage';
 import Client_Page from './Screens/ClientsPage';
+import FournisseursPage from './Screens/FournisseursPage';
+import AddFournisseurPage from './Screens/AddFournisseurPage';
+import AddClientPage from './Screens/AddClientPage';
+import AddProductPage from './Screens/AddProductPage';
+import AddReapproPage from './Screens/AddReapproPage';
+import FacturesPage from './Screens/FacturesPage';
+import ReapproPage from './Screens/ReapproPage';
+import StockPage from './Screens/StockPage';
 
 // Crée un navigateur de type Stack
 const Stack = createStackNavigator();
@@ -56,6 +64,30 @@ export default function App() {
 
         {/* Page de client*/}
         <Stack.Screen name="ClientsPage" component={Client_Page} />
+
+         {/* Page de fournisseur*/}
+         <Stack.Screen name="FournisseursPage" component={FournisseursPage} />
+
+         {/* Page de fournisseur*/}
+         <Stack.Screen name="AddClientPage" component={AddClientPage} />
+
+          {/* Page d'ajout fournisseur*/}
+         <Stack.Screen name="AddFournisseurPage" component={AddFournisseurPage} />
+
+          {/* Page d'ajout fournisseur*/}
+         <Stack.Screen name="AddProductPage" component={AddProductPage} />
+       
+          {/* Page d'ajout fournisseur*/}
+         <Stack.Screen name="AddReapproPage" component={AddReapproPage} />
+
+          {/* Page d'ajout fournisseur*/}
+         <Stack.Screen name="FacturesPage" component={FacturesPage} />
+
+           {/* Page d'ajout fournisseur*/}
+         <Stack.Screen name="ReapproPage" component={ReapproPage} />
+
+           {/* Page d'ajout fournisseur*/}
+         <Stack.Screen name="StockPage" component={StockPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

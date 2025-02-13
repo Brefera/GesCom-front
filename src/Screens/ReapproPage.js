@@ -3,38 +3,45 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
 
-const Client_Page = ({ navigation }) => {
+const ReapproPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Bouton Retour */}
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('ShopDetailsPage')}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
 
       {/* Titre */}
-            <Text style={styles.title}>Shopping girl</Text>
-            <View style={styles.tabs}>
-              <TouchableOpacity onPress={() => navigation.navigate('ShopDetailsPage')}>
-                <Text style={styles.inactiveTab}>Tableau de bord</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('ClientsPage')}>
-                <Text style={styles.activeTab}>Clients</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate('FournisseursPage')}>
-                <Text style={styles.inactiveTab}>Fournisseurs</Text>
-              </TouchableOpacity>
-            </View>
+      <Text style={styles.title}>Shopping girl - Réapprovisionnement</Text>
 
-      {/* Liste des clients */}
-      <Text style={styles.sectionTitle}>Liste des clients</Text>
-      <View style={styles.clientCard}><Text style={styles.clientName}>Katherine Zye</Text></View>
-      <View style={styles.clientCard}><Text style={styles.clientName}>Jean Martin</Text></View>
-      <View style={styles.clientCard}><Text style={styles.clientName}>Alicia Bertin</Text></View>
+      {/* Onglets */}
+      <View style={styles.tabs}>
+        <TouchableOpacity onPress={() => navigation.navigate('StockPage')}>
+          <Text style={styles.inactiveTab}>Produits</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ReapproPage')}>
+          <Text style={styles.activeTab}>Réapprovisionnement</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Liste des réapprovisionnements */}
+      <Text style={styles.sectionTitle}>Liste des réapprovisionnements</Text>
+      <View style={styles.reapproCard}>
+        <Text style={styles.reapproTitle}>Réappro n°003-01/2025</Text>
+        <Text style={styles.reapproDetails}>04/01/2025 - Chemise blanche - 20</Text>
+        <Text style={styles.reapproPrice}>22000 Fcfa</Text>
+      </View>
+      <View style={styles.reapproCard}>
+        <Text style={styles.reapproTitle}>Réappro n°003-01/2025</Text>
+        <Text style={styles.reapproDetails}>04/01/2025 - Chemise blanche - 20</Text>
+        <Text style={styles.reapproPrice}>22000 Fcfa</Text>
+      </View>
 
       {/* Bouton Ajouter */}
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('AddClientPage')}>
+      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('AddReapproPage')}>
         <Ionicons name="add" size={30} color="#FFF" />
       </TouchableOpacity>
+
       {/* Barre de navigation en bas */}
       <BottomNav navigation={navigation} />
     </View>
@@ -75,7 +82,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 10,
   },
-  clientCard: {
+  reapproCard: {
     backgroundColor: '#FFFFFF',
     padding: 15,
     borderRadius: 10,
@@ -83,8 +90,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#FFC27A',
   },
-  clientName: {
+  reapproTitle: {
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  reapproDetails: {
+    fontSize: 14,
+    color: '#666',
+  },
+  reapproPrice: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#FF9500',
   },
   addButton: {
     position: 'absolute',
@@ -100,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Client_Page;
+export default ReapproPage;
