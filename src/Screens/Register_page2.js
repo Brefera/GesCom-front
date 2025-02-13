@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FF4500', // Orange foncé
+    color: '#FF9500', // Orange foncé
     marginBottom: 10,
   },
   subtitle: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   registerButton: {
     width: '100%',
     height: 50,
-    backgroundColor: '#FF4500', // Orange foncé
+    backgroundColor: '#FF9500', // Orange foncé
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   loginLink: {
-    color: '#FF4500', // Orange foncé
+    color: '#FF9500', // Orange foncé
     fontSize: 14,
     textAlign: 'center',
   },

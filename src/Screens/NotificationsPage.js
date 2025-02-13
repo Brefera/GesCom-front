@@ -8,10 +8,10 @@ const notifications = [
   { id: '3', title: 'Stock de skirt presque vide', shop: 'Shopping girl', date: '12/11/2024' },
 ];
 
-const NotificationsPage = ({ navigation }) => {
+const Notification_Page = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home_page')}>
         <Ionicons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
       <Text style={styles.title}>Notifications</Text>
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
+    paddingTop: 50,
   },
   backButton: {
     marginBottom: 20,
@@ -93,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationsPage;
+export default Notification_Page;

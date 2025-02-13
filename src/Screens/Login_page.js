@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#FF4500', // Orange foncé
+    color: '#FF9500', // Orange foncé
   },
   subtitle: {
     fontSize: 16,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   forgotPassword: {
-    color: '#FF4500', // Orange foncé
+    color: '#FF9500', // Orange foncé
     fontSize: 14,
     alignSelf: 'flex-end',
     marginBottom: 20,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   loginButton: {
     width: '100%',
     height: 50,
-    backgroundColor: '#FF4500', // Orange foncé
+    backgroundColor: '#FF9500', // Orange foncé
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   registerLink: {
-    color: '#FF4500', // Orange foncé
+    color: '#FF9500', // Orange foncé
     fontSize: 14,
   },
 });

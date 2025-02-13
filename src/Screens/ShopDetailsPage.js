@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const ShopDetailsPage = ({ navigation }) => {
+const ShopDetailPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Bouton retour */}
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home_page')}>
         <Ionicons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
 
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
+    paddingTop: 50,
   },
   backButton: {
     marginBottom: 10,
@@ -110,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShopDetailsPage;
+export default ShopDetailPage;

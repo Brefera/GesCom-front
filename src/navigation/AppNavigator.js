@@ -9,11 +9,10 @@ import LoadingScreen2 from '../Screens/LoadingScreen2';
 import HomePage from '../Screens/Home_page';
 import ForgotPassword from '../Screens/forget_page';
 import ResetPassword from '../Screens/ResetPassword';
-import AddshopPage from '../Screens/AddShopPage';
-import NotificationsPage from '../Screens/NotificationsPage';
 import AddShopPage from '../Screens/AddShopPage';
 import ShopDetailsPage from '../Screens/ShopDetailsPage';
-import ClientsPage from '../Screens/ClientsPage';
+import Client_Page from '../Screens/ClientsPage';
+import Notification_Page from '../Screens/NotificationsPage';
 
 
 
@@ -33,11 +32,9 @@ const AppNavigator = () => {
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="ResetPassword" component={ResetPassword} />
       <Stack.Screen name="AddShopPage" component={AddShopPage} />
-      <Stack.Screen name="NotificationsPage" component={NotificationsPage} />
+      <Stack.Screen name="NotificationsPage" component={Notification_Page} />
       <Stack.Screen name="ShopDetailsPage" component={ShopDetailsPage} />
-      <Stack.Screen name="ClientsPage" component={ClientsPage} />
-
-
+      <Stack.Screen name="ClientsPage" component={Client_Page} />
     </Stack.Navigator>
   );
 };
