@@ -13,6 +13,8 @@ import AddShopPage from '../Screens/AddShopPage';
 import ShopDetailsPage from '../Screens/ShopDetailsPage';
 import Client_Page from '../Screens/ClientsPage';
 import Notification_Page from '../Screens/NotificationsPage';
+import FournisseursPage from '../Screens/FournisseursPage';
+
 
 
 
@@ -35,6 +37,8 @@ const AppNavigator = () => {
       <Stack.Screen name="NotificationsPage" component={Notification_Page} />
       <Stack.Screen name="ShopDetailsPage" component={ShopDetailsPage} />
       <Stack.Screen name="ClientsPage" component={Client_Page} />
+      <Stack.Screen name="FournisseursPage" component={FournisseursPage} />
+
     </Stack.Navigator>
   );
 };

@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const ShopDetailPage = ({ navigation }) => {
+const ShopDetailsPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Bouton retour */}
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home_page')}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
 
@@ -14,13 +14,15 @@ const ShopDetailPage = ({ navigation }) => {
       <Text style={styles.title}>Shopping girl</Text>
       <View style={styles.tabs}>
         <TouchableOpacity>
-          <Text style={styles.inactiveTab}>Tableau de bord</Text>
+          <Text style={styles.activeTab}>Tableau de bord</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('ClientsPage')}>
-          <Text style={styles.activeTab}>Clients</Text>
+          <Text style={styles.inactiveTab}>Clients</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.inactiveTab}>Fournisseurs</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('FournisseursPage')}>
+        <Text style={styles.activeTab}>Fournisseurs</Text>
+        </TouchableOpacity>
         </TouchableOpacity>
       </View>
 
@@ -49,7 +51,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
-    paddingTop: 50,
   },
   backButton: {
     marginBottom: 10,
@@ -63,15 +64,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginVertical: 10,
   },
-  inactiveTab: {
-    color: '#888',
-    fontSize: 14,
-  },
   activeTab: {
     color: '#FF9500',
     fontSize: 14,
     fontWeight: 'bold',
     textDecorationLine: 'underline',
+  },
+  inactiveTab: {
+    color: '#888',
+    fontSize: 14,
   },
   sectionTitle: {
     fontSize: 18,
@@ -111,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShopDetailPage;
+export default ShopDetailsPage;
