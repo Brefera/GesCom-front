@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Client_Page = ({ navigation }) => {
+const ClientPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Bouton Retour */}
@@ -13,9 +13,13 @@ const Client_Page = ({ navigation }) => {
       {/* Titre */}
       <Text style={styles.title}>Shopping girl</Text>
       <View style={styles.tabs}>
-        <Text style={styles.inactiveTab}>Tableau de bord</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('ShopDetailsPage')}>
+          <Text style={styles.inactiveTab}>Tableau de bord</Text>
+        </TouchableOpacity>
         <Text style={styles.activeTab}>Clients</Text>
-        <Text style={styles.inactiveTab}>Fournisseurs</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('FournisseursPage')}>
+          <Text style={styles.inactiveTab}>Fournisseurs</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Liste des clients */}
@@ -25,7 +29,10 @@ const Client_Page = ({ navigation }) => {
       <View style={styles.clientCard}><Text style={styles.clientName}>Alicia Bertin</Text></View>
 
       {/* Bouton Ajouter */}
-      <TouchableOpacity style={styles.addButton}>
+      <TouchableOpacity 
+        style={styles.addButton} 
+        onPress={() => navigation.navigate('AddClientPage')}
+      >
         <Ionicons name="add" size={30} color="#FFF" />
       </TouchableOpacity>
     </View>
@@ -91,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Client_Page;
+export default ClientPage;

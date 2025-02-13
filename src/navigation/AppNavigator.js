@@ -14,6 +14,7 @@ import ShopDetailsPage from '../Screens/ShopDetailsPage';
 import Client_Page from '../Screens/ClientsPage';
 import Notification_Page from '../Screens/NotificationsPage';
 import FournisseursPage from '../Screens/FournisseursPage';
+import AddClientPage from '../Screens/AddClientPage';
 
 
 
@@ -38,6 +39,9 @@ const AppNavigator = () => {
       <Stack.Screen name="ShopDetailsPage" component={ShopDetailsPage} />
       <Stack.Screen name="ClientsPage" component={Client_Page} />
       <Stack.Screen name="FournisseursPage" component={FournisseursPage} />
+      <Stack.Screen name="AddClientPage" component={AddClientPage} />
+
+      
 
     </Stack.Navigator>
   );
