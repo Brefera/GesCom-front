@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { ActiveTabContext } from '../App'; // Importer le contexte
+import { ActiveTabContext } from './ActiveTabContext'; // Importer le contexte
 
 const BottomNav = ({ navigation }) => {
   const { activeTab, setActiveTab } = useContext(ActiveTabContext); // Utiliser le contexte
@@ -12,14 +12,14 @@ const BottomNav = ({ navigation }) => {
       <TouchableOpacity
         style={styles.navItem}
         onPress={() => {
-          setActiveTab('Home_page');
-          navigation.navigate('Home_page');
+          setActiveTab('Home_page'); // Mettre à jour l'onglet actif
+          navigation.navigate('Home_page'); // Naviguer vers la page
         }}
       >
         <Ionicons
           name="home"
           size={24}
-          color={activeTab === 'Home_page' ? '#FF9500' : '#A0A0A0'}
+          color={activeTab === 'Home_page' ? '#FF9500' : '#A0A0A0'} // Changer la couleur en fonction de l'état
         />
       </TouchableOpacity>
 

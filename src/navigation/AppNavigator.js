@@ -21,6 +21,7 @@ import AddReapproPage from '../Screens/AddReapproPage';
 import FacturesPage from '../Screens/FacturesPage';
 import ReapproPage from '../Screens/ReapproPage';
 import StockPage from '../Screens/StockPage';
+import SettingPage from './Screens/settingPage';
 
 
 
@@ -52,6 +53,7 @@ const AppNavigator = () => {
       <Stack.Screen name="FacturesPage" component={FacturesPage} />
       <Stack.Screen name="ReapproPage" component={ReapproPage} />
       <Stack.Screen name="StockPage" component={StockPage} />
+      <Stack.Screen name="settingPage" component={SettingPage} />
 
 
     </Stack.Navigator>

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react'; // Importer useContext
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
+import { ActiveTabContext } from '../components/ActiveTabContext'; // Importer le contexte
 
 const FacturesPage = ({ navigation }) => {
+  const { setActiveTab } = useContext(ActiveTabContext); // Utiliser le contexte
+
+  // Définir l'onglet actif lorsque la page est montée
+  useEffect(() => {
+    setActiveTab('FacturesPage');
+  }, []);
   return (
     <View style={styles.container}>
       {/* Bouton Retour */}

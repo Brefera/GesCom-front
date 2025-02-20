@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react'; // Importez React et les hooks en une seule ligne
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { ActiveTabContext } from '../components/ActiveTabContext'; // Importez le contexte
+import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
 
 const HomePage = ({ navigation }) => {
+  const { setActiveTab } = useContext(ActiveTabContext); // Utiliser le contexte
+
+  // Définir l'onglet actif lorsque la page est montée
+  useEffect(() => {
+    setActiveTab('Home_page');
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
