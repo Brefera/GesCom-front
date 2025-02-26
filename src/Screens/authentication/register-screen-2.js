@@ -1,7 +1,59 @@
-import React from 'react';
+import { useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import Toast from 'react-native-toast-message';
 
-const RegisterStep2 = ({ navigation }) => {
+const RegisterStep2Screen = ({ navigation }) => {
+  const route = useRoute();
+
+  const { firstname, lastname, tel } = route.params;
+  console.log({ firstname }, { lastname }, { tel })
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmpass, setConfirmpass] = useState('');
+
+  const handlerAddUser = async () => {
+
+    const data = {
+      first_name: firstname,
+      last_name: lastname,
+      tel_user: tel,
+      email,
+      password,
+      confirmpass
+    }
+
+    try {
+      const response = await fetch('http://192.168.83.178:8000/api/users/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+  
+      const res = await response.json();
+      console.log(res);
+  
+      if (response.ok) {
+        // 🎯 Redirect user to Login screen after successful registration
+        Toast.show({
+          type: 'success',
+          text1: 'Inscription réussie 🎉',
+          text2: 'Vous pouvez maintenant vous connecter.',
+          position: 'top',
+          visibilityTime: 3000,
+          onHide: () => navigation.navigate('Login')
+        });
+      } else {
+        Toast.show({ type: 'error', text1: 'Erreur', text2: res.message || 'Une erreur s’est produite.' });
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      Toast.show({ type: 'error', text1: 'Erreur', text2: 'Une erreur s’est produite.' });
+    }
+  }
   return (
     <View style={styles.container}>
       {/* Titre */}
@@ -17,6 +69,8 @@ const RegisterStep2 = ({ navigation }) => {
         placeholderTextColor="#999"
         keyboardType="email-address"
         autoCapitalize="none"
+        value={email}  // Bind value to state
+        onChangeText={setEmail} // Update state
       />
 
       {/* Champ Mot de passe */}
@@ -25,6 +79,8 @@ const RegisterStep2 = ({ navigation }) => {
         placeholder="Mot de passe"
         placeholderTextColor="#999"
         secureTextEntry
+        value={password}  // Bind value to state
+        onChangeText={setPassword} // Update state
       />
 
       {/* Champ Confirmation du mot de passe */}
@@ -33,10 +89,12 @@ const RegisterStep2 = ({ navigation }) => {
         placeholder="Confirmation"
         placeholderTextColor="#999"
         secureTextEntry
+        value={confirmpass}  // Bind value to state
+        onChangeText={setConfirmpass} // Update state
       />
 
       {/* Bouton "S'inscrire" */}
-      <TouchableOpacity style={styles.registerButton}onPress={() => navigation.navigate('Home_page')}>
+      <TouchableOpacity style={styles.registerButton} onPress={handlerAddUser}>
         <Text style={styles.registerButtonText}>S'inscrire</Text>
       </TouchableOpacity>
 
@@ -99,4 +157,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterStep2;
+export default RegisterStep2Screen;

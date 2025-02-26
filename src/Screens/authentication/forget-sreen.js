@@ -1,48 +1,32 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const RegisterStep1 = ({ navigation }) => {
+const ForgotPasswordScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Titre */}
-      <Text style={styles.title}>S’inscrire</Text>
+      <Text style={styles.title}>Récupération de mot de passe</Text>
 
       {/* Sous-titre */}
-      <Text style={styles.subtitle}>Bienvenue sur l’application GestCom, votre appli de gestion de facture</Text>
+      <Text style={styles.subtitle}>Entrer votre email d'inscription</Text>
 
-      {/* Champ Nom */}
+      {/* Champ Email */}
       <TextInput
         style={styles.input}
-        placeholder="Nom"
+        placeholder="Email"
         placeholderTextColor="#999"
+        keyboardType="email-address"
+        autoCapitalize="none"
       />
 
-      {/* Champ Prénoms */}
-      <TextInput
-        style={styles.input}
-        placeholder="Prénoms"
-        placeholderTextColor="#999"
-      />
-
-      {/* Champ Téléphone */}
-      <TextInput
-        style={styles.input}
-        placeholder="Téléphone"
-        placeholderTextColor="#999"
-        keyboardType="phone-pad"
-      />
-
-      {/* Bouton "Suivant" */}
-      <TouchableOpacity
-        style={styles.nextButton}
-        onPress={() => navigation.navigate('Register_page2')} // Redirige vers la deuxième étape d'inscription
-      >
-        <Text style={styles.nextButtonText}>Suivant</Text>
+      {/* Bouton "Envoyer" */}
+      <TouchableOpacity style={styles.sendButton}onPress={() => navigation.navigate('Reset')}>
+        <Text style={styles.sendButtonText}>Envoyer</Text>
       </TouchableOpacity>
 
-      {/* Lien "Déjà un compte ? Se connecter" */}
+      {/* Lien "Problème résolu ? Se connecter" */}
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.loginLink}>Déjà un compte ? Se connecter</Text>
+        <Text style={styles.loginLink}>Problème résolu ? Se connecter</Text>
       </TouchableOpacity>
     </View>
   );
@@ -59,7 +43,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FF9500', // Orange foncé
+    color: '#FF4500', // Orange foncé
     marginBottom: 10,
   },
   subtitle: {
@@ -78,7 +62,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontSize: 16,
   },
-  nextButton: {
+  sendButton: {
     width: '100%',
     height: 50,
     backgroundColor: '#FF9500', // Orange foncé
@@ -87,15 +71,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
   },
-  nextButtonText: {
+  sendButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
   loginLink: {
-    color: '#FF9500', // Orange foncé
+    color: '#FF4500', // Orange foncé
     fontSize: 14,
+    textAlign: 'center',
   },
 });
 
-export default RegisterStep1;
+export default ForgotPasswordScreen;

@@ -1,27 +1,34 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const ForgotPassword = ({ navigation }) => {
+const ResetPasswordScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Titre */}
-      <Text style={styles.title}>Récupération de mot de passe</Text>
+      <Text style={styles.title}>Changement de mot de passe</Text>
 
       {/* Sous-titre */}
-      <Text style={styles.subtitle}>Entrer votre email d'inscription</Text>
+      <Text style={styles.subtitle}>Renseignez le nouveau mot de passe</Text>
 
-      {/* Champ Email */}
+      {/* Champ Mot de passe */}
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="Mot de passe"
         placeholderTextColor="#999"
-        keyboardType="email-address"
-        autoCapitalize="none"
+        secureTextEntry
       />
 
-      {/* Bouton "Envoyer" */}
-      <TouchableOpacity style={styles.sendButton}onPress={() => navigation.navigate('')}>
-        <Text style={styles.sendButtonText}>Envoyer</Text>
+      {/* Champ Confirmation du mot de passe */}
+      <TextInput
+        style={styles.input}
+        placeholder="Confirmation"
+        placeholderTextColor="#999"
+        secureTextEntry
+      />
+
+      {/* Bouton "Valider" */}
+      <TouchableOpacity style={styles.validateButton} onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.validateButtonText}>Valider</Text>
       </TouchableOpacity>
 
       {/* Lien "Problème résolu ? Se connecter" */}
@@ -30,6 +37,7 @@ const ForgotPassword = ({ navigation }) => {
       </TouchableOpacity>
     </View>
   );
+  
 };
 
 const styles = StyleSheet.create({
@@ -43,7 +51,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FF4500', // Orange foncé
+    color: '#FF9500', // Orange foncé
     marginBottom: 10,
   },
   subtitle: {
@@ -62,7 +70,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontSize: 16,
   },
-  sendButton: {
+  validateButton: {
     width: '100%',
     height: 50,
     backgroundColor: '#FF9500', // Orange foncé
@@ -71,16 +79,17 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 20,
   },
-  sendButtonText: {
+  validateButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
   loginLink: {
-    color: '#FF4500', // Orange foncé
+    color: '#FF9500', // Orange foncé
     fontSize: 14,
     textAlign: 'center',
   },
 });
 
-export default ForgotPassword;
+
+export default ResetPasswordScreen;

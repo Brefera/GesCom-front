@@ -1,16 +1,79 @@
-import React, { useContext, useEffect } from 'react'; // Importez React et les hooks en une seule ligne
+import React, { useContext, useEffect, useState } from 'react'; // Importez React et les hooks en une seule ligne
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { ActiveTabContext } from '../components/ActiveTabContext'; // Importez le contexte
-import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message';
+// import { ActiveTabContext } from '../components/ActiveTabContext'; // Importez le contexte
+// import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
 
-const HomePage = ({ navigation }) => {
-  const { setActiveTab } = useContext(ActiveTabContext); // Utiliser le contexte
+const HomeScreen = ({ navigation }) => {
+  const [user, setUser] = useState(null);
+  const [shops, setShops] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // const { setActiveTab } = useContext(ActiveTabContext); // Utiliser le contexte
 
   // Définir l'onglet actif lorsque la page est montée
   useEffect(() => {
-    setActiveTab('Home_page');
+    const fetchUserData = async () => {
+      try {
+        const token = await AsyncStorage.getItem('accessToken');
+        if (!token) {
+          navigation.replace('Login');
+          return;
+        }
+
+        const response = await fetch('http://192.168.83.178:8000/api/user/profile', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const userData = await response.json();
+
+        if (response.ok) {
+          setUser(userData);
+          fetchShops(token);
+        } else {
+          Alert.alert('Erreur', userData.message || 'Impossible de récupérer les données.');
+          navigation.replace('Login');
+        }
+      } catch (error) {
+        console.error(error);
+        Alert.alert('Erreur', 'Une erreur s’est produite.');
+        navigation.replace('Login');
+      }
+    };
+
+    const fetchShops = async (token) => {
+      try {
+        const response = await fetch('https://your-api.com/user/shops', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const shopsData = await response.json();
+
+        if (response.ok) {
+          setShops(shopsData);
+        } else {
+          Alert.alert('Erreur', shopsData.message || 'Impossible de récupérer les boutiques.');
+        }
+      } catch (error) {
+        console.error(error);
+        Alert.alert('Erreur', 'Une erreur s’est produite en récupérant les boutiques.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
   }, []);
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem('accessToken');
+    await AsyncStorage.removeItem('refreshToken');
+    Toast.show({
+      type: 'error',
+      text1: 'Déconnecté',
+      text2: 'Vous avez été déconnecté.',
+    });
+    navigation.replace('Login');
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -18,7 +81,7 @@ const HomePage = ({ navigation }) => {
           <Text style={styles.headerPrefix}>Bonjour, </Text>
           <Text style={styles.headerName}>Sara</Text>
         </View>
-        <TouchableOpacity style={styles.notificationButton}onPress={() => navigation.navigate('NotificationsPage')}>
+        <TouchableOpacity style={styles.notificationButton} onPress={() => navigation.navigate('Notification')}>
           <Ionicons name="notifications-outline" size={24} color="#1A1A1A" />
         </TouchableOpacity>
       </View>
@@ -41,33 +104,33 @@ const HomePage = ({ navigation }) => {
             <Text style={styles.shopName}>Shopping girl</Text>
             <Text style={styles.shopDate}>Date de création: 12/10/2024</Text>
           </View>
-          <TouchableOpacity style={styles.seeMoreButton}onPress={() => navigation.navigate('ShopDetailsPage')}>
+          <TouchableOpacity style={styles.seeMoreButton} onPress={() => navigation.navigate('ShopTabs')}>
             <Text style={styles.seeMore}>Voir +</Text>
           </TouchableOpacity>
         </View>
       </View>
 
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.addButton}
-        onPress={() => navigation.navigate('AddShopPage')}
+        onPress={() => navigation.navigate('')}
       >
         <Ionicons name="add" size={30} color="#FFF" />
       </TouchableOpacity>
 
-       <View style={styles.bottomNav}>
-            <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home_page')}>
-              <Ionicons name="home" size={24} color="#FF9500" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('StockPage')}>
-              <Ionicons name="cube" size={24} color="#A0A0A0" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('FacturesPage')}>
-              <Ionicons name="document-text" size={24} color="#A0A0A0" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Settings')}>
-              <Ionicons name="settings" size={24} color="#A0A0A0" />
-            </TouchableOpacity>
-          </View>
+      {/* <View style={styles.bottomNav}>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home')}>
+          <Ionicons name="home" size={24} color="#FF9500" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('')}>
+          <Ionicons name="cube" size={24} color="#A0A0A0" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('')}>
+          <Ionicons name="document-text" size={24} color="#A0A0A0" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('')}>
+          <Ionicons name="settings" size={24} color="#A0A0A0" />
+        </TouchableOpacity>
+      </View> */}
     </View>
   );
 };
@@ -207,4 +270,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomePage;
+export default HomeScreen;

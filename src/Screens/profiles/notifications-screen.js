@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
+// import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
 
 const notifications = [
   { id: '1', title: 'Stock de skirt presque vide', shop: 'Shopping girl', date: '12/11/2024' },
@@ -9,7 +9,7 @@ const notifications = [
   { id: '3', title: 'Stock de skirt presque vide', shop: 'Shopping girl', date: '12/11/2024' },
 ];
 
-const Notification_Page = ({ navigation }) => {
+const NotificationScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Home_page')}>
@@ -35,7 +35,7 @@ const Notification_Page = ({ navigation }) => {
         />
       </View>
       {/* Barre de navigation en bas */}
-      <BottomNav navigation={navigation} />
+      {/* <BottomNav navigation={navigation} /> */}
     </View>
   );
 };
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Notification_Page;
+export default NotificationScreen;

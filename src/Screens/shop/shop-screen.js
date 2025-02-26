@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
+// import BottomNav from '../components/BottomNav'; // Importez le composant BottomNav
 
 
-const ShopDetailsPage = ({ navigation }) => {
+const ShopScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Bouton retour */}
@@ -45,7 +45,7 @@ const ShopDetailsPage = ({ navigation }) => {
         </View>
       </View>
       {/* Barre de navigation en bas */}
-      <BottomNav navigation={navigation} />
+      {/* <BottomNav navigation={navigation} /> */}
     </View>
   );
 };
@@ -117,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShopDetailsPage;
+export default ShopScreen;
